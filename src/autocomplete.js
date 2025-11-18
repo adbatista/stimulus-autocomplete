@@ -133,9 +133,7 @@ export default class Autocomplete extends Controller {
     this.inputTarget.value = textValue
 
     if (this.hasHiddenTarget) {
-      this.hiddenTarget.value = value
-      this.hiddenTarget.dispatchEvent(new Event("input"))
-      this.hiddenTarget.dispatchEvent(new Event("change"))
+      this.fillHiddentarget(value)
     } else {
       this.inputTarget.value = value
     }
@@ -151,6 +149,12 @@ export default class Autocomplete extends Controller {
     )
   }
 
+  fillHiddentarget(value) {
+    this.hiddenTarget.value = value
+    this.hiddenTarget.dispatchEvent(new Event("input"))
+    this.hiddenTarget.dispatchEvent(new Event("change"))
+  }
+  
   clear() {
     this.inputTarget.value = ""
     if (this.hasHiddenTarget) this.hiddenTarget.value = ""
